@@ -1,32 +1,37 @@
-import { useDispatch, useSelector } from "react-redux"
-import { AppDispatch, RootState } from "../../store/store"
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store/store";
 import { ChangeEvent, useEffect, useState } from "react";
 import { fetchCountryList } from "../../services/country-list/country-list.service";
-import { ApiStatus } from "../../types/types";
+import { CountryCarousel } from "../../components/country-carousel";
+import { CountryList } from "../../components/country-list";
 
 export const Home = () => {
-    const dispatch = useDispatch<AppDispatch>();
-    const [selectedOption, setSelectedOption] = useState("");
+  const dispatch = useDispatch<AppDispatch>();
+  const [selectedOption, setSelectedOption] = useState("");
 
-    const countryList = useSelector((state: RootState) => {
-        if(selectedOption !== "") {
-            const data = state.countryList.data.filter((d) => d.region === selectedOption);
-            return { ...state.countryList, data };
-        }
-        return state.countryList;
-    });
-
-    useEffect(() => {
-        dispatch(fetchCountryList());
-    }, []);
-
-    const handleTabChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setSelectedOption(e.target.value);
+  const countryList = useSelector((state: RootState) => {
+    if (selectedOption !== "") {
+      const data = state.countryList.data.filter(
+        (d) => d.region === selectedOption,
+      );
+      return { ...state.countryList, data };
     }
+    return state.countryList;
+  });
 
-    return (
-        <div>
-            <form>
+  useEffect(() => {
+    dispatch(fetchCountryList());
+  }, []);
+
+  const handleTabChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSelectedOption(e.target.value);
+  };
+
+  return (
+    <div>
+      <CountryCarousel />
+      <CountryList />
+      {/* <form>
                 <div>
                     <label htmlFor="all">All</label>
                     <input type="radio" name="region" id="all" value="" onChange={handleTabChange}/>
@@ -48,7 +53,7 @@ export const Home = () => {
         }
         {
             countryList.status === ApiStatus.Rejected && <h1>Error</h1>
-        }
-        </div>
-    );
-}
+        } */}
+    </div>
+  );
+};
