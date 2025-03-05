@@ -4,6 +4,9 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { fetchCountryList } from "../../services/country-list/country-list.service";
 import { CountryCarousel } from "../../components/country-carousel";
 import { CountryList } from "../../components/country-list";
+import { Navigation } from "../../components/navigation";
+import { Container } from "react-bootstrap";
+import { Header } from "../../components/header";
 
 export const Home = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -29,31 +32,11 @@ export const Home = () => {
 
   return (
     <div>
-      <CountryCarousel />
-      <CountryList />
-      {/* <form>
-                <div>
-                    <label htmlFor="all">All</label>
-                    <input type="radio" name="region" id="all" value="" onChange={handleTabChange}/>
-                </div>
-                <div>
-                    <label htmlFor="asia">Asia</label>
-                    <input type="radio" name="region" id="asia" value="Asia" onChange={handleTabChange}/>
-                </div>
-                <div>
-                    <label htmlFor="europe">Europe</label>
-                    <input type="radio" name="region" id="europe" value="Europe" onChange={handleTabChange}/>
-                </div>
-            </form>
-        {
-            countryList.status === ApiStatus.Pending && <h1>Loading....</h1>
-        }
-        {
-            countryList.status === ApiStatus.Fulfilled && countryList.data.map(data => <h1>{data.name}</h1>)
-        }
-        {
-            countryList.status === ApiStatus.Rejected && <h1>Error</h1>
-        } */}
+      <Navigation />
+      <Container>
+        <Header />
+        <CountryCarousel />
+      </Container>
     </div>
   );
 };
