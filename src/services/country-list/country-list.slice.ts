@@ -17,6 +17,9 @@ const countryListSlice = createSlice({
     }
   },
   extraReducers(builder) {
+    builder.addCase(fetchCountryList.pending, (state) => {
+      state.status = ApiStatus.Pending;
+    });
     builder.addCase(fetchCountryList.fulfilled, (state, action) => {
         state.status = ApiStatus.Fulfilled;
         state.data = action.payload;
