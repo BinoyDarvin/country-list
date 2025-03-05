@@ -6,23 +6,44 @@ import { fetchCountryList } from '../../services/country-list/country-list.servi
 import { Button } from 'react-bootstrap';
 import { ApiStatus } from '../../types/types';
 import { Loader } from '../loader';
+import { useLocation } from 'react-router';
 import './country-list.scss';
 
 export const CountryList = () => {
+	const location = useLocation();
 	const dispatch = useDispatch<AppDispatch>();
 	const countryList = useSelector((state: RootState) => state.countryList);
 
-	const [index, setIndex] = useState(1);
+	const [indexes, setIndexes] = useState<Record<string, number>>({ all: 1 });
+	const [region, setRegion] = useState('');
 
 	useEffect(() => {
-		dispatch(fetchCountryList());
-	}, []);
+		const hashRegionMap: Record<string, string> = {
+			'#asia': 'Asia',
+			'#europe': 'Europe',
+		};
+		const newRegion = hashRegionMap[location.hash] || 'all';
+		setRegion(newRegion);
+	}, [location]);
+
+	useEffect(() => {
+		if (!countryList.data.length) {
+			dispatch(fetchCountryList());
+		}
+	}, [dispatch, countryList.data.length]);
 
 	const handleLoadMore = () => {
-		if (index * 10 < countryList.data.length) {
-			setIndex((prev) => prev + 1);
-		}
+		setIndexes((prev) => ({
+			...prev,
+			[region]: (prev[region] || 1) + 1,
+		}));
 	};
+
+	const currentIndex = indexes[region] || 1;
+
+	const filteredCountries = countryList.data.filter((country) => region === 'all' || country.region === region);
+
+	const displayedCountries = filteredCountries.slice(0, currentIndex * 10);
 
 	return (
 		<>
@@ -33,13 +54,15 @@ export const CountryList = () => {
 			{countryList.status === ApiStatus.Fulfilled && (
 				<>
 					<div className='country-list-container'>
-						{countryList.data.slice(0, index * 10).map((country) => (
+						{displayedCountries.map((country) => (
 							<CountryCard key={country.name} flag={country.flag} country={country.name} region={country.region} />
 						))}
 					</div>
-					<Button variant='outline-secondary' className='mt-5' onClick={handleLoadMore}>
-						Load More
-					</Button>
+					{currentIndex * 10 < filteredCountries.length && (
+						<Button variant='outline-secondary' className='mt-5' onClick={handleLoadMore}>
+							Load More
+						</Button>
+					)}
 				</>
 			)}
 		</>
