@@ -1,21 +1,30 @@
-import './country-card.scss';
+import Card from "react-bootstrap/Card";
+import "./country-card.scss";
 
 type CountryCardProps = {
-    image: string,
-    country: string,
-    region: string
-}
+  flag: string;
+  country: string;
+  region: string;
+};
 
-export const CountryCard = ({image, country, region}: CountryCardProps) => {
-    return (
-        <div className='country-card-container'>
-            <div className="flag">
-                <img src={image} />
-            </div>
-            <div>
-                <h3>{country}</h3>
-                <h5>{region}</h5>
-            </div>
-        </div>
-    );
-}
+export const CountryCard = ({ flag, country, region }: CountryCardProps) => {
+  return (
+    <div className="country-card-container">
+      <Card className="w-100 d-flex flex-row align-items-start p-3">
+        <Card.Img
+          variant="top"
+          src={flag}
+          className="me-3"
+          style={{
+            width: "200px",
+            border: "2px solid red",
+          }}
+        />
+        <Card.Body>
+          <Card.Title>{country}</Card.Title>
+          <Card.Text>{region}</Card.Text>
+        </Card.Body>
+      </Card>
+    </div>
+  );
+};
