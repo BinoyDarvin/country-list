@@ -1,7 +1,10 @@
 import { FormEvent, useState } from 'react';
 import { emailRegex, passwordRegex } from '../../../util/constants';
-import { useNavigate } from 'react-router';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { NavLink, useNavigate } from 'react-router';
+import { Form, Button, Container, Row, Col, Stack } from 'react-bootstrap';
+import { FiTwitter, FiFacebook, FiLinkedin, FiYoutube } from 'react-icons/fi';
+import { RoundedIcon } from '../../../components/rounded-icon';
+import './login.scss';
 
 export const Login = () => {
 	const navigate = useNavigate();
@@ -48,7 +51,10 @@ export const Login = () => {
 		<Container className='mt-5'>
 			<Row className='justify-content-md-center'>
 				<Col md={6}>
-					<h2 className='text-center mb-4'>Login</h2>
+					<h2 className='mb-4'>Login</h2>
+					<div>
+						New user? <NavLink to='/auth/signup'>Create an account</NavLink>
+					</div>
 					<Form onSubmit={handleSubmit}>
 						<Form.Group className='mb-3' controlId='formEmail'>
 							<Form.Control
@@ -82,6 +88,25 @@ export const Login = () => {
 							Login
 						</Button>
 					</Form>
+					<div className='divider mt-3'>
+						<span>Or Sign In With</span>
+					</div>
+					<div className='d-flex align-items-center justify-content-center mt-4'>
+						<Stack direction='horizontal' gap={3}>
+							<RoundedIcon>
+								<FiTwitter />
+							</RoundedIcon>
+							<RoundedIcon>
+								<FiFacebook />
+							</RoundedIcon>
+							<RoundedIcon>
+								<FiLinkedin />
+							</RoundedIcon>
+							<RoundedIcon>
+								<FiYoutube />
+							</RoundedIcon>
+						</Stack>
+					</div>
 				</Col>
 			</Row>
 		</Container>
