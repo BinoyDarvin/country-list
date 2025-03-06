@@ -10,7 +10,7 @@ export const AuthLayout = () => {
 				<Col md={6}>
 					<Outlet />
 				</Col>
-				<Col md={6} className='h-100'>
+				<Col md={6} className='h-100 d-none d-md-block'>
 					<div className='auth-background h-100'></div>
 				</Col>
 			</Row>

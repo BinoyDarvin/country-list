@@ -5,6 +5,7 @@ import { Form, Button, Container, Row, Col, Stack, Card } from 'react-bootstrap'
 import { FiTwitter, FiFacebook, FiLinkedin, FiYoutube } from 'react-icons/fi';
 import { RoundedIcon } from '../../../components/rounded-icon';
 import './login.scss';
+import { SocialIconsStack } from '../../../components/social-icons-stack';
 
 export const Login = () => {
 	const navigate = useNavigate();
@@ -49,63 +50,50 @@ export const Login = () => {
 
 	return (
 		<div className='login-container'>
-			<Card className='p-5' style={{width: '26rem'}}>
-			<h2>Login</h2>
-			<div>
-				New user? <NavLink to='/auth/signup'>Create an account</NavLink>
-			</div>
-			<Form className='mt-4' onSubmit={handleSubmit}>
-				<Form.Group className='mb-3' controlId='formEmail'>
-					<Form.Control
-						type='text'
-						name='email'
-						placeholder='Username or email'
-						value={formData.email}
-						onChange={(e) => handleOnChange('email', e.target.value)}
-						isInvalid={!!formErrors.email}
-					/>
-					<Form.Control.Feedback type='invalid'>{formErrors.email}</Form.Control.Feedback>
-				</Form.Group>
+			<Card className='login-card p-5'>
+				<h2>Login</h2>
+				<div>
+					New user? <NavLink to='/auth/signup'>Create an account</NavLink>
+				</div>
+				<Form className='mt-4' onSubmit={handleSubmit}>
+					<Form.Group className='mb-3' controlId='formEmail'>
+						<Form.Control
+							type='text'
+							name='email'
+							placeholder='Username or email'
+							value={formData.email}
+							onChange={(e) => handleOnChange('email', e.target.value)}
+							isInvalid={!!formErrors.email}
+						/>
+						<Form.Control.Feedback type='invalid'>{formErrors.email}</Form.Control.Feedback>
+					</Form.Group>
 
-				<Form.Group className='mb-3' controlId='formPassword'>
-					<Form.Control
-						type='password'
-						name='password'
-						placeholder='Password'
-						value={formData.password}
-						onChange={(e) => handleOnChange('password', e.target.value)}
-						isInvalid={!!formErrors.password}
-					/>
-					<Form.Control.Feedback type='invalid'>{formErrors.password}</Form.Control.Feedback>
-				</Form.Group>
+					<Form.Group className='mb-3' controlId='formPassword'>
+						<Form.Control
+							type='password'
+							name='password'
+							placeholder='Password'
+							value={formData.password}
+							onChange={(e) => handleOnChange('password', e.target.value)}
+							isInvalid={!!formErrors.password}
+						/>
+						<Form.Control.Feedback type='invalid'>{formErrors.password}</Form.Control.Feedback>
+					</Form.Group>
 
-				<Form.Group className='mb-3' controlId='formKeepSignedIn'>
-					<Form.Check type='checkbox' label='Keep me signed in' />
-				</Form.Group>
+					<Form.Group className='mb-3' controlId='formKeepSignedIn'>
+						<Form.Check type='checkbox' label='Keep me signed in' />
+					</Form.Group>
 
-				<Button variant='primary' type='submit' className='mt- 3 w-100'>
-					Login
-				</Button>
-			</Form>
-			<div className='divider mt-4'>
-				<span>Or Sign In With</span>
-			</div>
-			<div className='d-flex align-items-center justify-content-center mt-4'>
-				<Stack direction='horizontal' gap={3}>
-					<RoundedIcon>
-						<FiTwitter />
-					</RoundedIcon>
-					<RoundedIcon>
-						<FiFacebook />
-					</RoundedIcon>
-					<RoundedIcon>
-						<FiLinkedin />
-					</RoundedIcon>
-					<RoundedIcon>
-						<FiYoutube />
-					</RoundedIcon>
-				</Stack>
-			</div>
+					<Button variant='primary' type='submit' className='mt- 3 w-100'>
+						Login
+					</Button>
+				</Form>
+				<div className='divider mt-4'>
+					<span>Or Sign In With</span>
+				</div>
+				<div className='d-flex align-items-center justify-content-center mt-4'>
+					<SocialIconsStack />
+				</div>
 			</Card>
 		</div>
 	);
