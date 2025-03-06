@@ -1,0 +1,32 @@
+.country-card-container {
+	display: flex;
+	width: 100%;
+	.country-card {
+		width: 100%;
+		align-items: center;
+		box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+		transition:
+			transform 0.3s ease,
+			box-shadow 0.3s ease;
+		&:hover {
+			transform: translateY(-5px);
+			box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 16px;
+		}
+	}
+	.flag-img {
+		border: 2px solid #000;
+		transition: border-color 0.3s ease;
+		max-width: 200px;
+		height: auto;
+		object-fit: cover;
+		&:hover {
+			border-color: #0d6efd;
+		}
+		@media (max-width: 768px) {
+			max-width: 120px;
+		}
+		@media (max-width: 480px) {
+			max-width: 100px;
+		}
+	}
+}

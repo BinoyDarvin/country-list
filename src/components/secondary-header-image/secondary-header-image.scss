@@ -1,0 +1,9 @@
+.side-image {
+	border: 2px solid black;
+	height: 100%;
+	overflow: hidden;
+  img {
+		height: 400px;
+		object-fit: cover;
+	}
+}
