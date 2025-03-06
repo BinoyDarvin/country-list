@@ -1,15 +1,16 @@
 import { FormEvent, useState } from 'react';
 import { emailRegex, passwordRegex } from '../../../util/constants';
 import { NavLink, useNavigate } from 'react-router';
-import { Form, Button, Card } from 'react-bootstrap';
+import { Form, Button, Card, InputGroup } from 'react-bootstrap';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 import { SocialIconsStack } from '../../../components/social-icons-stack';
 import './login.scss';
 
 export const Login = () => {
 	const navigate = useNavigate();
-
 	const [formData, setFormData] = useState({ email: '', password: '' });
 	const [formErrors, setFormErrors] = useState({ email: '', password: '' });
+	const [showPassword, setShowPassword] = useState(false);
 
 	const handleOnChange = (name: string, value: string) => {
 		setFormData({ ...formData, [name]: value });
@@ -28,8 +29,7 @@ export const Login = () => {
 		if (formData.password === '') {
 			errors.password = 'Please enter the password';
 		} else if (!passwordRegex.test(formData.password)) {
-			errors.password =
-				'Password must be minimum 8 characters long  (consist of atleast 1 Capital letter, 1 number & 1 symbol) ';
+			errors.password = 'Password must be at least 8 characters long (include 1 capital letter, 1 number & 1 symbol).';
 		}
 
 		if (errors.email || errors.password) {
@@ -67,22 +67,27 @@ export const Login = () => {
 					</Form.Group>
 
 					<Form.Group className='mb-3' controlId='formPassword'>
-						<Form.Control
-							type='password'
-							name='password'
-							placeholder='Password'
-							value={formData.password}
-							onChange={(e) => handleOnChange('password', e.target.value)}
-							isInvalid={!!formErrors.password}
-						/>
-						<Form.Control.Feedback type='invalid'>{formErrors.password}</Form.Control.Feedback>
+						<InputGroup>
+							<Form.Control
+								type={showPassword ? 'text' : 'password'}
+								name='password'
+								placeholder='Password'
+								value={formData.password}
+								onChange={(e) => handleOnChange('password', e.target.value)}
+								isInvalid={!!formErrors.password}
+							/>
+							<Button variant="dark" onClick={() => setShowPassword(!showPassword)}>
+								{showPassword ? <FiEyeOff /> : <FiEye />}
+							</Button>
+							<Form.Control.Feedback type='invalid'>{formErrors.password}</Form.Control.Feedback>
+						</InputGroup>
 					</Form.Group>
 
 					<Form.Group className='mb-3' controlId='formKeepSignedIn'>
 						<Form.Check type='checkbox' label='Keep me signed in' />
 					</Form.Group>
 
-					<Button variant='primary' type='submit' className='mt- 3 w-100'>
+					<Button variant='primary' type='submit' className='mt-3 w-100'>
 						Login
 					</Button>
 				</Form>
