@@ -8,7 +8,7 @@ import { NotFound } from "../pages/error/not-found";
 export const router = createBrowserRouter([
     {
         path: '/',
-        element: <Navigate to="/home" replace />
+        element: <Navigate to="/auth/login" replace />
     },
     {
         path: '/home',
