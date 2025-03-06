@@ -59,8 +59,8 @@ export const CountryList = () => {
 						))}
 					</div>
 					{currentIndex * 10 < filteredCountries.length && (
-						<Button variant='outline-secondary' className='mt-5' onClick={handleLoadMore}>
-							Load More
+						<Button className='mt-5' onClick={handleLoadMore}>
+							Load more
 						</Button>
 					)}
 				</>

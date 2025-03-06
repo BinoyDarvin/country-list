@@ -6,13 +6,7 @@ export const Header = () => {
 		<>
 			<Row>
 				<Col md={6}>
-					<hr
-						style={{
-							color: 'red',
-							backgroundColor: 'red',
-							height: 5,
-						}}
-					/>
+					<hr className='hr' />
 				</Col>
 			</Row>
 			<Row>
@@ -23,13 +17,7 @@ export const Header = () => {
 			<Row>
 				<Col md={6}></Col>
 				<Col md={6}>
-					<hr
-						style={{
-							color: 'red',
-							backgroundColor: 'red',
-							height: 5,
-						}}
-					/>
+					<hr className='hr' />
 				</Col>
 			</Row>
 		</>
