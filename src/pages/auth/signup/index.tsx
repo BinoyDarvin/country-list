@@ -1,11 +1,9 @@
 import { FormEvent, useState } from 'react';
-import { NavLink, useNavigate } from 'react-router';
+import { NavLink } from 'react-router';
 import { Form, Button, Card } from 'react-bootstrap';
 import { SocialIconsStack } from '../../../components/social-icons-stack';
 
 export const Signup = () => {
-	const navigate = useNavigate();
-
 	const [formData, setFormData] = useState({
 		fullName: '',
 		email: '',
