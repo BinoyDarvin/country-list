@@ -59,9 +59,11 @@ export const CountryList = () => {
 						))}
 					</div>
 					{currentIndex * 10 < filteredCountries.length && (
-						<Button className='mt-5' onClick={handleLoadMore}>
-							Load more
-						</Button>
+						<div className='text-center'>
+							<Button className='mt-5 px-5' onClick={handleLoadMore}>
+								Load more
+							</Button>
+						</div>
 					)}
 				</>
 			)}
