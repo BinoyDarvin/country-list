@@ -12,8 +12,8 @@ const countryListSlice = createSlice({
   name: "countryList",
   initialState,
   reducers: {
-    clearFetchCountryList(state) {
-      state = initialState;
+    clearFetchCountryList() {
+      return initialState;
     }
   },
   extraReducers(builder) {
