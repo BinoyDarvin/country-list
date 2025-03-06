@@ -1,9 +1,10 @@
 import { CountryCarousel } from '../../components/country-carousel';
 import { CountryList } from '../../components/country-list';
 import { Navigation } from '../../components/navigation';
-import { Col, Container, Row, Image } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { Header } from '../../components/header';
 import { Footer } from '../../components/footer';
+import { SecondaryHeaderImage } from '../../components/secondary-header-image';
 import './home.scss';
 
 export const Home = () => {
@@ -14,8 +15,8 @@ export const Home = () => {
 				<Header />
 				<Row>
 					<Col>
-						<div className='side-image d-block d-md-none'>
-							<Image src='https://placehold.co/600x400' />
+						<div className='d-block d-md-none'>
+							<SecondaryHeaderImage />
 						</div>
 					</Col>
 				</Row>
@@ -24,8 +25,8 @@ export const Home = () => {
 						<CountryCarousel />
 					</Col>
 					<Col md={2}>
-						<div className='side-image d-none d-md-block'>
-							<Image src='https://placehold.co/600x400' />
+						<div className='d-none d-md-block'>
+							<SecondaryHeaderImage />
 						</div>
 					</Col>
 				</Row>
