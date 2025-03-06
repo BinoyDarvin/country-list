@@ -19,7 +19,7 @@ export const Home = () => {
 						</div>
 					</Col>
 				</Row>
-				<Row>
+				<Row className='mt-2'>
 					<Col md={10}>
 						<CountryCarousel />
 					</Col>
@@ -29,7 +29,7 @@ export const Home = () => {
 						</div>
 					</Col>
 				</Row>
-				<Row>
+				<Row className='mt-5'>
 					<CountryList />
 				</Row>
 				<Row>
