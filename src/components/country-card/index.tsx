@@ -10,11 +10,11 @@ type CountryCardProps = {
 export const CountryCard = ({ flag, country, region }: CountryCardProps) => {
 	return (
 		<div className='country-card-container'>
-			<Card className='w-100 d-flex flex-row align-items-start p-3'>
+			<Card className='country-card w-100 d-flex flex-row align-items-start p-3'>
 				<Card.Img
 					variant='top'
 					src={flag}
-					className='me-3'
+					className='flag-img me-3'
 					style={{
 						width: '200px',
 					}}
