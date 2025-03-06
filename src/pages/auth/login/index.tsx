@@ -1,11 +1,9 @@
 import { FormEvent, useState } from 'react';
 import { emailRegex, passwordRegex } from '../../../util/constants';
 import { NavLink, useNavigate } from 'react-router';
-import { Form, Button, Container, Row, Col, Stack, Card } from 'react-bootstrap';
-import { FiTwitter, FiFacebook, FiLinkedin, FiYoutube } from 'react-icons/fi';
-import { RoundedIcon } from '../../../components/rounded-icon';
-import './login.scss';
+import { Form, Button, Card } from 'react-bootstrap';
 import { SocialIconsStack } from '../../../components/social-icons-stack';
+import './login.scss';
 
 export const Login = () => {
 	const navigate = useNavigate();
